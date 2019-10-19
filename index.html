@@ -1,0 +1,904 @@
+<?php require_once( 'couch/cms.php' ); ?>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Corporate Service | Karunya</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/themify-icons.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/flexslider.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/ytplayer.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/theme.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/animate.css" rel="stylesheet" type="text/css" media="all" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Favicon -->
+    <link rel="icon" href="img/ku.ico">
+        <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:600,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <script type="text/javascript">
+ 
+function start_onload(last_hour){
+                var l = last_hour;
+        var timeout_message = document.getElementById('timeout_message');
+        var currentTime = new Date();
+        var days;
+        var hr;
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+        var expire_time = 0; // in seconds
+        if (hours<last_hour) {
+                expire_time += (last_hour-hours-1)*3600;
+                expire_time += (59-minutes)*60;
+                expire_time += (59-seconds);
+        }
+        else {
+                timeout_message.innerHTML = 'It\'s after '+last_hour+' o\'clock!';
+                return;
+        }
+        var expire_time = currentTime.getTime() + 1000*expire_time;
+        function countdown_session_timeout() {
+                var current_time = new Date().getTime();
+                var remaining = Math.floor((expire_time - current_time)/1000);
+                if (remaining>0) {
+                        hours = Math.floor(remaining/3600);
+                        days = Math.floor(hours/24);
+                        hr = Math.floor(hours%24);
+                        minutes = Math.floor((remaining - hours*3600)/60);
+                        seconds = remaining%60;
+                        timeout_message.innerHTML = days + ' Days '+ hr + ' Hours ' + minutes + ' Minutes ' + seconds + ' Seconds';
+                        setTimeout(countdown_session_timeout, 1000);
+                }
+                else{
+                        start_onload(l + 168);                  
+                }
+                
+        }
+        countdown_session_timeout();
+}
+ 
+</script>
+    </head>
+    <style type="text/css">
+        a:hover
+        {   
+            padding: 5px;
+
+        }
+
+        .btn-lg1{
+            background-color: #9a073c;
+            color: white;
+
+        }
+        /* carousel */
+#quote-carousel 
+{
+  padding: 0 10px 30px 10px;
+  margin-top: 30px;
+}
+
+/* Control buttons  */
+#quote-carousel .carousel-control
+{
+  background: none;
+  color: #222;
+  font-size: 2.3em;
+  text-shadow: none;
+  margin-top: 30px;
+}
+/* Previous button  */
+#quote-carousel .carousel-control.left 
+{
+  left: -12px;
+}
+/* Next button  */
+#quote-carousel .carousel-control.right 
+{
+  right: -12px !important;
+}
+/* Changes the position of the indicators */
+#quote-carousel .carousel-indicators 
+{
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
+}
+/* Changes the color of the indicators */
+#quote-carousel .carousel-indicators li 
+{
+  background: #c0c0c0;
+}
+#quote-carousel .carousel-indicators .active 
+{
+  background: #333333;
+}
+#quote-carousel img
+{
+  width: 250px;
+  height: 100px
+}
+/* End carousel */
+
+.item blockquote {
+    border-left: none; 
+    margin: 0;
+}
+
+.item blockquote img {
+    margin-bottom: 10px;
+}
+
+.item blockquote p:before {
+    content: "\f10d";
+    font-family: 'Fontawesome';
+    float: left;
+    margin-right: 10px;
+}
+
+
+
+/**
+  MEDIA QUERIES
+*/
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    #quote-carousel 
+    {
+      margin-bottom: 0;
+      padding: 0 40px 30px 40px;
+    }
+    
+}
+
+/* Small devices (tablets, up to 768px) */
+@media (max-width: 768px) { 
+    
+    /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+    
+    #quote-carousel .carousel-indicators {
+        bottom: -20px !important;  
+    }
+    #quote-carousel .carousel-indicators li {
+        display: inline-block;
+        margin: 0px 5px;
+        width: 15px;
+        height: 15px;
+    }
+    #quote-carousel .carousel-indicators li.active {
+        margin: 0px 5px;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+
+.p1{
+    line-height: 24px;
+}
+
+.p2{
+    line-height: 44px;
+}
+
+/*.p2{
+    line-height: 30px;
+}
+
+
+.p3{
+    line-height: 30px;
+}*/
+
+
+#timeout_message{
+    font-size: 50px;
+    color:#9a073c;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+}
+
+.heading{
+    color:#9a073c;
+    letter-spacing:1px;
+    font-size:60px;
+    font-family: 'Cinzel Decorative', cursive;
+    margin-top: -20px;
+}
+
+
+
+
+
+.btn-default:hover{
+    background-color: #9a073c;
+}
+
+.btn-lg1:hover{
+    background-color: #9a073c;
+}
+
+@media (max-width: 1400px) { 
+    
+    .heading{
+        font-size:42px;
+        margin-top: 0px;
+    }
+
+    #timeout_message{
+    font-size: 45px;
+}
+
+.p1{
+    line-height: 35px;
+}
+}
+
+
+
+
+
+
+@media (max-width: 768px) { 
+    
+    .heading{
+        font-size:42px;
+        margin-top: 0px;
+    }
+
+    #timeout_message{
+    font-size: 30px;
+}
+}
+
+
+
+
+
+
+
+        
+    </style>
+        
+    <body class="scroll-assist" id="home" onload="start_onload(80)">
+        <div class="nav-container">
+            <a id="top"></a>
+            <nav class="bg-dark" style="background-color: #0b245b; color: #fff;">
+                
+                <div class="nav-bar">
+                    <div class="module left">
+                        <a href="index.php">
+                            <img alt="Foundry" src="img/ku.png" style="height: 70px; width: 70px;" />
+                        </a>
+                    </div>
+                    <div class="module widget-handle mobile-toggle right visible-sm visible-xs">
+                        <i class="ti-menu"></i>
+                    </div>
+                    <div class="module-group right">
+                        <div class="module left">
+                            <ul class="menu">
+                                <li>
+                                    <a href="#home" style="font-size: 12px;">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#about" style="font-size: 12px;">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li >
+                                    <a href="#verse" style="font-size: 12px;">
+                                        Motivation
+                                   </a>
+                                </li>
+                                <li>
+                                    <a href="#testimony" style="font-size: 12px;">
+                                        Testimonials
+                                    </a>
+                                    
+                                </li>
+                                <li >
+                                    <a href="#blogs" style="font-size: 12px;">
+                                        Blogs
+                                    </a>
+                                    
+                                </li>
+                                
+                                
+                                <li >
+                                    <!-- class="has-dropdown" -->
+                                    <a href="#contact" style="font-size: 12px;">
+                                        Contact
+                                    </a>
+                                    <!-- <ul>
+                                        <li class="has-dropdown">
+                                            <a href="#">
+                                                Listing
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="blog-sidebar.html">
+                                                        Sidebar Left
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="blog-sidebar-right.html">
+                                                        Sidebar Right
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="blog-no-sidebar.html">
+                                                        No Sidebar
+                                                    </a>
+                                                </li>
+                                            </ul> -->
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--end of menu module-->
+                       
+                      
+                       
+                    </div>
+                    <!--end of module group-->
+                </div>
+            </nav>
+        </div>
+        <section class="cover fullscreen image-slider slider-arrow-controls controls-inside" >
+                <ul class="slides">
+                    <li class="overlay image-bg bg-light">
+                        <div class="container">
+                                
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12" >
+                                        
+                                        <center><h5 class="uppercase large ani1 animated fadeInLeftBig delay-1.5s" style="margin-top: 10px; color: #0b245b;"><strong>Department of Value Education</strong></h5></center>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12" >
+                                        <center><img alt="image" class="background-image" src="img/bg.png" /></center>
+                                    </div>
+                                </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12" >
+                                     <center><h2 class="heading ani2 animated fadeInRightBig delay-1.5s" style="color:#9a073c;">Karunya Corporate Service</h2></center>
+                                     <center><h5 class="uppercase large ani1 animated fadeInLeftBig delay-1.5s" style="margin-top: 10px; color: #0b245b; font-size: 20px;">Revolutionize the world through Jesus</h5></center>
+                                    <center><a class="btn btn-lg ani3 animated fadeInDownBig delay-1.5s" href="#contact" style="background-color:#9a073c; color:#fff;">Get in Touch</a></center>
+                                </div>
+                            </div>
+                            <!--end of row-->
+                        </div>
+                        <!--end of container-->
+                    </li>
+                </ul>
+            </section>
+            <br>
+             <section class="pt0 pb0 pb-xs-80 image-zoom" id="verse">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 mb-xs-40">
+                            <cms:editable name='image'type='richtext'><img class="p32" alt="Pic" src="img/ob.jpg" /></cms:editable>
+                        </div>
+                        <div class="col-md-5 col-md-push-1 col-sm-6 mt104 mt-sm-80 mt-xs-0 text-center-xs">
+                            <h5 class="uppercase" style="font-size:30px; color: #9a073c; font-family: 'Montserrat', sans-serif;">
+                              <b> MOTIVATION</b>
+                            </h5>
+                            <h4 class="mb160 mb-xs-80" style="font-family: 'Montserrat', sans-serif;"><span style="color: #9a073c; font-size: 40px;">&ldquo;</span>&ensp;<cms:editable name='verse' type='richtext'>Love the Lord your God with all your heart and with all your soul and with all your mind and with all your strength&ensp;</cms:editable><span style="color: #9a073c;font-size: 40px;">&bdquo;</span> <br>
+                          <!--  <span style="font-family: 'Montserrat', sans-serif;"> Mark 12:30</span></h4> -->
+
+                         
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+                
+             <section id="about" style="background-color: #0b245b">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6" style="padding-bottom: 20px;">
+                            <div class="pricing-table pt-1 text-center emphasis" style="background-color: white;">
+                              
+                                <span class="price p2 uppercase" style="font-family: 'Montserrat', sans-serif; color: #0b245b; font-size: 37px;"><b>Jesus</b> <br> Journey</span>
+                                
+                             <br><br>
+                                <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-lg btn-lg1 " data-toggle="modal" data-target="#myModal" style="background-color: #9a073c;color: white;" >Know More</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title uppercase" style="font-family: 'Montserrat', sans-serif;"><strong>Jesus Journey</strong></h4>
+      </div>
+      <div class="modal-body"style="color: black; font-size: 14px; font-family: 'Montserrat', sans-serif;">
+        <p>What was the first thought that struck you when someone said Jesus Journey? Think! In simple words it's nothing but to Journey with Him to the Father's House. Every journey isn't a cakewalk, you might have hardships that wreck you. But the journey of life started the moment you were out of your Mother's womb and it's still on. It may have wrecked you and might still be wrecking you. Here's what matters when you say Jesus Journey, not how you're journeying but who is journeying with you, not how big the obstacle in front of you is but how big your companion is in the journey and not how narrow your road is but who is walking with you in this. It's ultimately Jesus who walks you through every phase of your life. <br>
+Journeying with Jesus is probably the most simple way because all we need to do is BELIEVE and Just BELIEVE. Pray and Believe, the only solution to any problem that looks big. The Jesus Journey has helped each one of us immensely and uniquely in wondrous ways, despite how flawed we were. We welcome you all to join with us in this amazing journey with Jesus. Come experience it by yourself every <b>Monday</b> at 12:45 PM in Elohim auditorium. You will know the Truth and the Truth will set you free.
+</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+                                
+                            </div>
+                            <!--end of pricing table-->
+                        </div>
+                        <div class="col-md-4 col-sm-6" style="padding-bottom: 20px;">
+                            <div class="pricing-table pt-1 text-center emphasis " style="background-color: white; ">
+                              
+                                <span class="price p2 uppercase" style="font-family: 'Montserrat', sans-serif; color: #0b245b;font-size: 37px;"><b>Preparatory</b>  Prayer</span>
+                                
+                             <br><br>
+                                <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-lg btn-lg1" data-toggle="modal" data-target="#myModal1" style="background-color: #9a073c;color: white;">Know More</button>
+
+<!-- Modal -->
+<div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+        <h4 class="modal-title uppercase" style="font-family: 'Pacifico';"><strong>Preparatory Prayer </strong></h4>
+      </div>
+      <div class="modal-body"style="color: black; font-size: 14px; font-family: 'Montserrat', sans-serif;    ">
+        <p>Winning a soul for the Kingdom is not a one man show we believe, but when one soul receives Christ as his personal saviour there is celebration and rejoicing above the skies. It's beautiful how people in Christ come together to pray for the lost souls to experience that love which was revealed on the Cross where Jesus died for the sins of You and Me. Every individual needs the guidance of the Holy Spirit to win souls. Not by human strength but only the Strength that comes from above and the Power of His Blood.<br>
+Every Saturday at 5:00 PM worship leaders, ushers, musicians, audio and video technicians join together for a time of worship and intercession. We pray and intercede for the guidance of the Holy Spirit during the worship, for the congregation to experience the touch of His Love and for the man of God who will be sharing the word that each one of them is Blessed. This has helped not only those on the pulpit but also helped us see a huge shift among the congregation. Expanding our Father's House is a great privilege. The House of the Lord is open to anyone. Come and be a part.
+</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+                                
+                            </div>
+                            <!--end of pricing table-->
+                        </div>
+                        <div class="col-md-4 col-sm-6" style="padding-bottom: 20px;">
+                            <div class="pricing-table pt-1 text-center emphasis" style="background-color: white; ">
+                              
+                                <span class="price p2 uppercase" style=" font-family: 'Montserrat', sans-serif;color: #0b245b;font-size: 37px;"><b> Sunday </b> <br> Service </span>
+                                
+                             <br><br>
+                                <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-lg btn-lg1 " data-toggle="modal" data-target="#myModal2" style="background-color: #9a073c; color: white;" >Know More</button>
+
+<!-- Modal -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title uppercase" style="font-family: 'Pacifico';"><strong>Sunday Service</strong></h4>
+      </div>
+      <div class="modal-body"style="color: black; font-size: 14px;    font-family: 'Montserrat', sans-serif; ;">
+        <p>We at Corporate fellowship nurture and reach out to the young students with the Gospel who are lost, know not their Purpose in life, entangled in the life… We share the immense Love Of Christ which can transform every individual into a fine being. We here are completely dedicated to this service besides counselling the students with prayer, rebuilding their Identity with Compassion and Love. We commission them to be the Army for Christ who are ready anytime to share the Gospel.
+</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+                                
+                            </div>
+                            <!--end of pricing table-->
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+             <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <h1 class="mb16 uppercase" style="font-family: 'Montserrat', sans-serif;
+ color: black; letter-spacing:2px;  ">Next Service in</h1><br>
+                            <!-- <p class="lead mb64">
+                                Adjust the countdown date with the 'data-date' attribute (YYYY/MM/DD)
+                            </p> -->
+                        </div>
+                    </div>
+                    <!--end of row-->
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div id="timeout_message"></div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+            
+            
+            
+
+            <section class="pt10 pb0" id="testimony" style="background-color: #0b245b;">
+                <div class="container">
+  <div class="row">
+    <div class='col-md-offset-2 col-md-8 text-center uppercase'>
+    <h2 style="font-family: 'Montserrat', sans-serif; color: white;"><b>Testimonials<b></h2>
+    </div>
+  </div>
+  <div class='row' style="background-color:#0b245b;">
+    <div class=' col-md-12' style="background-color:#0b245b;">
+      <div class="carousel slide" data-ride="carousel" id="quote-carousel" style="background-color:#0b245b;border:5px white solid;margin-bottom: 20px;">
+        <!-- Bottom Carousel Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#quote-carousel" data-slide-to="1"></li>
+          <li data-target="#quote-carousel" data-slide-to="2"></li>
+          <li data-target="#quote-carousel" data-slide-to="3"></li>
+
+        </ol>
+        
+        <!-- Carousel Slides / Quotes -->
+        <div class="carousel-inner" >
+        
+          <!-- Quote 1 -->
+          <div class="item active" style="background-color: #0b245b;">
+            <blockquote style="background-color: #0b245b;color:white;">
+              <div class="row" style="background-color: #0b245b; ">
+                <div class="col-sm-12" style="font-size: 15px;background-color: #0b245b;color: white; font-family: 'Montserrat', sans-serif;">
+                  <p><i>Hi, I’m Jacob Basil Roy, Recently I got been admitted in the hospital due to severe stomach ache and doctors weren’t letting me know what my problem was instead they called up my brother, then I understood that something is wrong. I got scared and informed my parents about it. And I was advised undergo a scan. After scan the reports clearly showed a “solitary right lower ureteric calculus(6mms) with right hydronephrosis” which is simply termed that I had stone in my kidney. After knowing that I got disappointed and I was about to leave to my home town. But then Sujit sir and some of my friends came to the hospital and they prayed for me and spoke Healing and complete restoration upon my Health, when they prayed I got hope in the Lord and I felt something was happening in me at the moment. I cancelled my journey to my home, and that night I suffered with high fever and severe Stomach ache but then I prayed with faith and slept, The next day at 4 o’clock for my surprise the stone came out through Urine without any pain. My Faith in him healed me. I’m free.</i> </p>
+                  <h5 style="color: white;font-family: 'Montserrat', sans-serif; "><b>~ JACOB </b></h5>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+          <!-- Quote 2 -->
+          <div class="item">
+            <blockquote style="background-color: #0b245b;color:white;">
+              <div class="row">
+                
+                <div class="col-sm-12" style="font-size: 15px;color: white; font-family: 'Montserrat', sans-serif;">
+                  <p><i>Hi, I’m Geethika writing my testimony on how I overcame my inferiority complex and found my Identity in Christ. Since my childhood, I was bullied by my friends and near ones because of my colour which created a mind that I am not beautiful and no one except my parents would ever Love me. I had a mindset that I was just useless, fit for nothing and I can’t achieve anything in my life. But when I joined Karunya, through Jesus Journey sessions, God taught me who I am in him and my potential in stored for him. Yes we are Fearfully And Wonderfully Made (Psalms 139:4) and  we can do all things through Christ who strengthens us.(Philippians 4:13). And yes God loves us at any point of time in life, not minding of who you are and how you are. We are his precious creation, His Masterpiece (Ephesians 2:10) and we are his Precious children (2 Corinthians 6: 18 ).  Now I found my identity in Christ and overcame all my fears and doubts regarding my future. I stand strong praising  God for all he has been doing in my life and through my life. I wanted to encourage you all to never believe in the reports and sayings of the world and  the enemy, rather just believe in Jesus. The lover of our souls yes he has created us with a Purpose and he will be with us till the end, through all our failures, dark pasts, and our achievements.</i></p>
+                  <h5 style="color: white;  font-family: 'Montserrat', sans-serif;"><b>~ GEETIKA</b></h5>
+                </div>
+            </blockquote>
+          </div>
+          <!-- Quote 3 -->
+          <div class="item">
+            <blockquote style="background-color: #0b245b;color:white;">
+              <div class="row">
+                
+                <div class="col-sm-12" style="font-size: 15px;color: white; font-family: 'Montserrat', sans-serif;">
+                  <p>At the end of the service Sujit sir prayed for all, he said God's anointing of wisdom will be upon you, after that service there was tremendous changes in my academics, I'm an average student and concepts won't sink in my mind that easily, I've to study two or three times, but it wasn't the same after that service
+My least mark in internals was 30 in all subjects.
+</p>
+                  <h5 style="color: white;    font-family: 'Montserrat', sans-serif;"><b>~ PRIYANKA</b></h5>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+          <div class="item">
+            <blockquote style="background-color: #0b245b;color:white;">
+                          <div class="row">
+                
+                <div class="col-sm-12" style="font-size: 15px;color: white; font-family: 'Montserrat', sans-serif;">
+                  <p>Someone once said "When you want to bear the crown, you need to bear the crown"
+Most of the people take quite time for granted, I was one among them too, always considered reading Bible to be hard & boring especially at morning times you got to sacrifice some sleep.
+Jesus journey  taught me the importance of reading the Bible, praying, and spending lone time with God and  also to find my Identity in Christ. You are not who the world says you are, you are who He says you are! You are loved by the creator!!
+</p>
+                  <h5 style="color: white;font-family: 'Montserrat', sans-serif;    "><b>~ SHALOM</b></h5>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+        
+        <!-- Carousel Buttons Next/Prev -->
+        <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+        <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>
+      </div>                          
+    </div>
+  </div>
+</div>
+                
+            </section>
+            <section id="blogs"  style="background-color: #f9f9f9;">
+                <div class="container">
+                    <div class="row">
+                        <div class='col-md-offset-2 col-md-8 text-center uppercase'>
+    <h2 style="font-family: 'Montserrat', sans-serif; color: black;"><b>Blogs</b></h2><br>
+    </div>
+                        <div class="col-md-4 col-sm-6" style="padding-bottom: 20px;">
+                            <div class="pricing-table pt-1 text-center emphasis" style="background-color: #0b245b; ">
+                              
+                                <span class="price p1" style="font-family: 'Montserrat', sans-serif; color:white;font-size: 20px;">“ Best Combination : <br><b> SMART & SKILLED </b> ” </span><br><br>
+                                
+                                <p style=" font-family: 'Montserrat', sans-serif;">In this competitive world, when everyone is aiming to be the best, it requires a lot of courage and patience to nurture the creative side of oneself...</p>
+                             <br>
+                             <span style="font-family: 'Montserrat', sans-serif; color: white; font-size: 20px;">~ Sydney <b>Fernandes </b>
+<br> <span>B.E (Civil) 2005-09</span> </span><br><br>
+                                <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-lg btn-lg1 " data-toggle="modal" data-target="#myModal4" >Read More</button>
+
+<!-- Modal -->
+<div id="myModal4" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="font-family: 'Montserrat', sans-serif; color: white;"><strong>“Best Combination : SMART & SKILLED”</strong></h4>
+      </div>
+      <div class="modal-body"style="color: black; font-size: 14px; font-family: 'Montserrat', sans-serif; ;">
+        <p>In this competitive world, when everyone is aiming to be the best, it requires a lot of courage and patience to nurture the creative side of oneself. Creativity is not something which can be learnt in a crash course  or by sitting in a classroom, It needs to be developed by understanding yourself better each day. One can be smart in everything, but not necessarily skilled in everything. One of the best combinations which is rarely found is to be smart and skilled for the required task. This reminds me of the Lord Jesus Christ who was not only smart but was skilled as well, how can I say that? Let’s read Mark 6:2, it says:  (When the Sabbath came, he began to teach in the synagogue, and many who heard him were amazed. "Where did this man get these things?" they asked. "What's this wisdom that has been given him? What are these remarkable miracles he is performing?) HE first spoke WISDOM, which amazed people there. Not only was He smart, He also was skilled in what HE was called to do. No one can categorize Lord Jesus Christ as a mythology character, nor can anyone deny His existence, Why am I so sure about His reality? Because even if you refuse to believe about Him through the bible, history is a proof of it, as its divided into BC & AD all revolving around Jesus Christ. Jesus Christ was smart, HE was full of wisdom & was skilled in performing the miracles. Now many will want to know the source of His wisdom & skill, We can read it in John 14:10 where Lord Jesus Christ is having a conversation with his disciples : (Don’t you believe that I am in the Father and the Father is in me? The words I speak are not my own, but my Father who lives in me does his work through me.) HE considered His father as the true source of His wisdom & skill. We can read the same thing in the book of Colossians 1:27 where the apostle Paul says, : (For God wanted them to know that the riches and glory of Christ are for you Gentiles, too. And this is the secret: Christ lives in you. This gives you assurance of sharing his glory.) This was the secret that “Christ lives in you”, so no one can stop you as well to be smart and skilled, because now you know the true source. It is important to understand the reality with an open mind rather than to try finding the truth with a closed one.<br><br>
+~ Sydney Fernandes 
+<br> B.E (Civil) 2005-09 
+
+
+</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+                                
+                            </div>
+                            <!--end of pricing table-->
+                        </div>
+                        <div class="col-md-4 col-sm-6" style="padding-bottom: 20px;">
+                            <div class="pricing-table pt-1 text-center emphasis" style="background-color: #0b245b; ">
+                              
+                                <span class="price" style="font-family: 'Montserrat', sans-serif;color: white; font-size: 20px;">“ LIFE- <b> Win and Learn </b> ”</span><br><br>
+                                
+                                <p style=" font-family: 'Montserrat', sans-serif;">There are many experiences in our lives. But which one do we generally appreciate- ‘The Win’ or ‘The Loose’? Obviously ‘The Win’. But why is the factor ‘The Loose’ not appreciated...</p>
+                             <br>
+                             <span style="font-family: 'Montserrat', sans-serif; color:white; font-size: 20px;">~ Poorvick <b> James  </b>
+<br> B. Tech(ECE) 2015-19 </span><br><br>
+                                <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-lg btn-lg1 " data-toggle="modal" data-target="#myModal5" >Read More</button>
+
+<!-- Modal -->
+<div id="myModal5" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="font-family: 'Montserrat', sans-serif;"><strong>“LIFE- <b> Win and Learn </b>”</strong></h4>
+      </div>
+      <div class="modal-body"style="color: black; font-size: 14px; font-family: 'Montserrat', sans-serif;">
+        <p>There are many experiences in our lives. But which one do we generally appreciate- ‘The Win’ or ‘The Loose’? Obviously ‘The Win’. But why is the factor ‘The Loose’ not appreciated. Cause we don’t want that pain, that shame, that suffering in our lives. Some say, ‘Bro, no one should suffer that failure in their lives like how I suffered. It would be sometimes bitter for us. But what is the whole purpose of it. Nothing comes in lives for no reason and go. Every work in our lives has a purpose. That’s when I recall the concept ‘The Period of Incubation’. Every human have a learning period in their lives.  Some have long learning period whereas some have less learning period; depends on perception. <br>
+       Now let me tell you something that I learnt in my Soft Computing class. That subject was about Machine Learning. Technically, a machine is said to be learnt only when it undergoes several number of iteration process. Same way sometimes we need to go through new experiences in life for becoming a learnt person. This is called as Period of incubation, the place where a person starts to grow. Let me give you examples of great personalities from Bible- David, Joshua, Job, Esther and many more. Everyone had that period of Incubation. But what made them different than us is their point of view towards the problems. In life problems come and go, generally people say it’s the probability of ½ but I say the probability is 2/2 . They say we win or we lose, but I say it’s we Win and we Learn. If we win it’s good, if you didn’t then we learn from it. Always remember Victory is always Yours. Paul writes a letter to the Corinthian church, he says ‘But thanks be to God! He gives us the victory through our Lord Jesus Christ.’(1 Corinthians 15:57). Jesus clearly told ‘ it’s finished’ in John 19:30. Every battle in our lives is finished. The victory is already been declared. He had conquered Death; death in all our circumstances of life. He gave Life and declared VICTORY for all of us. So that we will no longer be a slave, but a Conqueror. We no longer are weak, but strong in Him. We are not a failure, but we are Victors because Christ is our Victor. 
+
+<br><br>
+~Poorvick James <br>
+ B. Tech(ECE) 2015-19
+
+
+</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+                                
+                            </div>
+                            <!--end of pricing table-->
+                        </div>
+                        <div class="col-md-4 col-sm-6" style="padding-bottom: 20px;">
+                            <div class="pricing-table pt-1 text-center emphasis" style="background-color: #0b245b; ">
+                              
+                                <span class="price" style="font-family: 'Montserrat', sans-serif; color:white;  font-size: 20px;">“ Jesus is <b> Love </b> ”</span><br><br><br>
+                                
+                                <p style=" font-family: 'Montserrat', sans-serif;">Hi all! I just want to encourage you all with the revelation I have about Jesus! So who is this Jesus? I tell you -Jesus is Love . He is the perfect, good...</p>
+                             <br>
+                             <span style="font-family: 'Montserrat', sans-serif; color: white; font-size: 20px;">~ Jeffrey <b> Paul  </b>
+<br> B. Tech(ECE) 2017-Present </span><br><br>
+                                <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-lg btn-lg1 " data-toggle="modal" data-target="#myModal6" >Read More</button>
+
+<!-- Modal -->
+<div id="myModal6" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="font-family: 'Montserrat', sans-serif;"><strong>“ Jesus is <b>Love</b>   ”</strong></h4>
+      </div>
+      <div class="modal-body"style="color: black; font-size: 14px; font-family: 'Montserrat', sans-serif; ;">
+        <p>Hi all! I just want to encourage you all with the revelation I have about Jesus! So who is this Jesus? I tell you -Jesus is Love . He is the perfect, good and a pure father with a heart that no one has in this world. He is the Bestest friend with whom you could share anything. Religion and all the religious rules are man-made, but Jesus is all about relationship. Apostle Paul says in Colossians 2:23 that the religious rules may seem pious but they provide no help in conquering a person’s evil desires. Nobody in this world is sinless but Jesus who is sinless became the sin we were and he gave up his life on the cross so that we could be purified. So we are made righteous not because of our self-righteousness but because of Jesus’ blood. We have to see Jesus and not people . Does our action(religious or secular) please God or Men?
+So let’s be filled with the Love of Jesus. If Jesus were to accuse us or condemn us , we would be goners. Nobody is perfect in this world . So let us encourage one another with the love of Jesus instead of judging .
+<br><br>
+~ Jeffrey Paul
+<br> B. Tech(ECE) 2017-Present 
+</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+                                
+                            </div>
+                            <!--end of pricing table-->
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+
+             
+            </section>
+            <section class="p0">
+                <div class="map-holder pt160 pb160">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.3598133902847!2d76.74187231428809!3d10.93616925921646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba866bd6aaaaaab%3A0xc650b8a75e7b51f0!2sKarunya+Institute+of+Technology+and+Sciences+(Deemed+University)!5e0!3m2!1sen!2sin!4v1562794577612!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </section>
+             <section class="page-title page-title-4 bg-secondary" id="contact" style="background-color: #0b245b;">
+                <div class="container" style="background-color: #0b245b;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <center><h2 class="mb0" style="font-family: 'Montserrat', sans-serif; color: white; "><b>Contact Us</b></h2></center>
+                        </div>
+                    </div>
+                        <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="list-inline social-list text-center">
+                                        
+                                        <!-- <li>
+                                            <a href="#">
+                                                <i class="ti-twitter-alt" style="font-size: 30px;color: white;"></i>
+                                            </a>
+                                        </li> -->
+                                <li>
+                                    <a href="https://www.facebook.com/officialcorporateservice/">
+                                        <i class="ti-facebook" style="font-size: 30px; color: white; "></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.instagram.com/corporateservice/">
+                                        <i class="fa fa-instagram" style="font-size: 38px;color: white;"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.youtube.com/channel/UC17XK7GNBC6oy-Zu6JfSB1g">
+                                        <!-- <i class="ti-youtube" ></i> -->
+                                        <i class="fa fa-youtube-play" style="font-size: 40px;color: white;"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                        <!-- <div class="col-md-6 text-right">
+                            <ol class="breadcrumb breadcrumb-2">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#">Pages</a>
+                                </li>
+                                <li class="active">Contact</li>
+                            </ol>
+                        </div> -->
+      
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+            
+            </section>
+       
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <br>    
+                        <p><strong>© 2019 All Rights Reserved Karunya WEB DEVELOPERS</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <!--end of container-->
+               <!--  <a class="btn btn-sm fade-half back-to-top inner-link" href="#top">Top</a> -->
+            </footer>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/flickr.js"></script>
+        <script src="js/flexslider.min.js"></script>
+        <script src="js/lightbox.min.js"></script>
+        <script src="js/masonry.min.js"></script>
+        <script src="js/twitterfetcher.min.js"></script>
+        <script src="js/spectragram.min.js"></script>
+        <script src="js/ytplayer.min.js"></script>
+        <script src="js/countdown.min.js"></script>
+        <script src="js/smooth-scroll.min.js"></script>
+        <script src="js/parallax.js"></script>
+        <script src="js/scripts.js"></script>
+        <script type = "text/javascript" > $(window).scroll(function() {
+    var windowYmax = 0;
+    var scrolledY = $(window).scrollTop();
+    if (scrolledY > windowYmax) {
+        $('.ani1').removeClass("fadeInLeftBig");
+    } else {
+        $('.ani1').addClass("fadeInLeftBig");
+    }
+});
+$(window).scroll(function() {
+    var windowYmax = 0;
+    var scrolledY = $(window).scrollTop();
+    if (scrolledY > windowYmax) {
+        $('.ani2').removeClass("fadeInRightBig");
+       
+    } else {
+         $('.ani2').addClass("fadeInRightBig");
+    }
+});
+$(window).scroll(function() {
+    var windowYmax = 0;
+    var scrolledY = $(window).scrollTop();
+    if (scrolledY > windowYmax) {
+        $('.ani3').removeClass("fadeInDownBig");
+
+    } else {
+        $('.ani3').addClass("fadeInDownBig");
+
+    }
+});
+$(document).ready(function() {
+  //Set the carousel options
+  $('#quote-carousel').carousel({
+    pause: true,
+    interval: 4000,
+  });
+});
+</script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5d513fb777aa790be32e829d/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+    </body>
+</html>
+<?php COUCH::invoke(); ?>
